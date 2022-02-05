@@ -2,11 +2,13 @@ import {
   Drawer,
   IconButton, Link, MenuItem, Toolbar,
 } from '@mui/material';
-import { useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 function MenuMobile() {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const aberto = useSelector((state) => state.aberto);
+  const dispatch = useDispatch();
   const getDrawerChoices = () => (
     <Link
       to="login"
@@ -16,9 +18,16 @@ function MenuMobile() {
     >
       <MenuItem>login</MenuItem>
     </Link>
+
   );
-  const handleDrawerOpen = () => setDrawerOpen(true);
-  const handleDrawerClose = () => setDrawerOpen(false);
+
+  const handleDrawerOpen = () => {
+    dispatch({ type: 'DRAWEROPEN' });
+  };
+
+  const handleDrawerClose = () => {
+    dispatch({ type: 'DRAWERCLOSE' });
+  };
 
   return (
     <Toolbar>
@@ -37,7 +46,7 @@ function MenuMobile() {
       <Drawer
         {...{
           anchor: 'left',
-          open: drawerOpen,
+          open: aberto,
           onClose: handleDrawerClose,
         }}
       >

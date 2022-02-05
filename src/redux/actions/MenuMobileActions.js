@@ -1,0 +1,2 @@
+export const DRAWEROPEN = 'DRAWEROPEN';
+export const DRAWERCLOSE = 'DRAWERCLOSE';
