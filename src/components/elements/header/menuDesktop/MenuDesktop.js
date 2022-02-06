@@ -1,5 +1,6 @@
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import { Button, Toolbar, Typography } from '@mui/material';
+import DrawerCategorias from '../drawerCategorias/DrawerCategorias';
 
 function MenuDesktop() {
   const femmecubatorLogo = (
@@ -7,7 +8,7 @@ function MenuDesktop() {
       variant="h6"
       component="h1"
       sx={{
-        fontFamily: 'Work Sans, sans-serif',
+        fontFamily: 'Roboto, Work Sans, sans-serif',
         fontWeight: 600,
         color: '#FFFEFE',
         textAlign: 'left',
@@ -23,6 +24,7 @@ function MenuDesktop() {
   );
   return (
     <Toolbar>
+      <DrawerCategorias />
       {femmecubatorLogo}
       <div>{getMenuButtons()}</div>
     </Toolbar>

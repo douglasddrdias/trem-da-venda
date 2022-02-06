@@ -1,59 +1,58 @@
 import {
-  Drawer,
-  IconButton, Link, MenuItem, Toolbar,
+  IconButton, Toolbar,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+
+import TrainIcon from '@mui/icons-material/Train';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import DrawerCategorias from '../drawerCategorias/DrawerCategorias';
+import DivEnd from '../../divEnd/DivEnd';
 
 function MenuMobile() {
-  const aberto = useSelector((state) => state.aberto);
-  const dispatch = useDispatch();
-  const getDrawerChoices = () => (
-    <Link
-      to="login"
-      color="inherit"
-      sx={{ textDecoration: 'none' }}
-      key="loginDrawer"
-    >
-      <MenuItem>login</MenuItem>
-    </Link>
-
-  );
-
-  const handleDrawerOpen = () => {
-    dispatch({ type: 'DRAWEROPEN' });
-  };
-
-  const handleDrawerClose = () => {
-    dispatch({ type: 'DRAWERCLOSE' });
-  };
-
   return (
-    <Toolbar>
+
+    <Toolbar sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+    }}
+    >
+      <DrawerCategorias />
       <IconButton
+        href="/"
         {...{
           edge: 'start',
           color: 'inherit',
           'aria-label': 'menu',
           'aria-haspopup': 'true',
-          onClick: handleDrawerOpen,
         }}
       >
-        <MenuIcon />
+        <TrainIcon />
       </IconButton>
-
-      <Drawer
-        {...{
-          anchor: 'left',
-          open: aberto,
-          onClose: handleDrawerClose,
-        }}
-      >
-        <div sx={{ padding: '20px 30px' }}>{getDrawerChoices()}</div>
-      </Drawer>
-
-      <div>TextoPrincipal</div>
+      <DivEnd>
+        <IconButton
+          href="/login"
+          {...{
+            edge: 'end',
+            color: 'inherit',
+            'aria-label': 'menu',
+            'aria-haspopup': 'true',
+          }}
+        >
+          <AccountCircleOutlined />
+        </IconButton>
+        <IconButton
+          href="/carrinho"
+          {...{
+            edge: 'end',
+            color: 'inherit',
+            'aria-label': 'menu',
+            'aria-haspopup': 'true',
+          }}
+        >
+          <ShoppingCartOutlinedIcon />
+        </IconButton>
+      </DivEnd>
     </Toolbar>
   );
 }
