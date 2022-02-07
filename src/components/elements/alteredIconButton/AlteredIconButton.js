@@ -2,11 +2,12 @@ import {
   IconButton,
 } from '@mui/material';
 
-function AlteredIconButton({ children }) {
+function AlteredIconButton({ children, options, posicao = 'start' }) {
   return (
     <IconButton
+      {... options}
       {...{
-        edge: 'start',
+        edge: `${posicao}`,
         color: 'inherit',
         'aria-label': 'menu',
         'aria-haspopup': 'true',
