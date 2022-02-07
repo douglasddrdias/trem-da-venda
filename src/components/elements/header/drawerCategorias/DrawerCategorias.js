@@ -7,22 +7,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useEffect, useRef } from 'react';
 import DivEnd from '../../divEnd/DivEnd';
+import { GetCategoriasProdutos } from '../../../../services/produtosApi/ProdutosApi';
+import { fetchCategorias } from '../../../../redux/actions/CategoriasActions';
+import { DRAWERCLOSE, DRAWEROPEN } from '../../../../redux/actions/MenuMobileActions';
 
 function DrawerCategorias() {
-  const aberto = useSelector((state) => state.aberto);
+  const aberto = useSelector((state) => state.menuMobile.aberto);
+  const categorias = useSelector((state) => state.categorias.categorias);
   const dispatch = useDispatch();
-  const getDrawerChoices = () => (
-    <Link
-      href="login"
-      color="inherit"
-      sx={{ textDecoration: 'none' }}
-      key="loginDrawer"
-    >
-      <MenuItem>login</MenuItem>
-    </Link>
+  const isMounted = useRef(true);
 
-  );
+  async function getCategorias() {
+    const { data } = await GetCategoriasProdutos();
+    if (isMounted.current && categorias.length === 0) {
+      dispatch(fetchCategorias(data));
+    }
+  }
+  useEffect(() => {
+    getCategorias();
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -51,10 +60,10 @@ function DrawerCategorias() {
   const drawerWidth = 240;
 
   const handleDrawerClose = () => {
-    dispatch({ type: 'DRAWERCLOSE' });
+    dispatch({ type: DRAWERCLOSE });
   };
   const handleDrawerOpen = () => {
-    dispatch({ type: 'DRAWEROPEN' });
+    dispatch({ type: DRAWEROPEN });
   };
   return (
     <>
@@ -94,7 +103,6 @@ function DrawerCategorias() {
                 'aria-label': 'menu',
                 'aria-haspopup': 'true',
                 onClick: handleDrawerClose,
-                alignSelf: 'flex-end',
               }}
             >
               <CloseOutlinedIcon />
@@ -102,7 +110,19 @@ function DrawerCategorias() {
           </DivEnd>
         </DrawerHeader>
         <Divider />
-        <div sx={{ padding: '20px 30px' }}>{getDrawerChoices()}</div>
+        <div sx={{ padding: '20px 30px' }}>{
+            categorias.length > 0 && categorias.map((item) => (
+              <Link
+                href="login"
+                color="inherit"
+                sx={{ textDecoration: 'none' }}
+                key={`drawer${item}`}
+              >
+                <MenuItem>{item}</MenuItem>
+              </Link>
+            ))
+        }
+        </div>
       </Drawer>
     </>
   );
