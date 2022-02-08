@@ -1,9 +1,16 @@
 import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import { Button, Toolbar, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import TrainIcon from '@mui/icons-material/Train';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import Link from '@mui/material/Link';
 import DrawerCategorias from '../drawerCategorias/DrawerCategorias';
+import ItemGrid from '../../itemGridSemBorda/ItemGridSemBorda';
+import AlteredIconButton from '../../alteredIconButton/AlteredIconButton';
 
 function MenuDesktop() {
-  const femmecubatorLogo = (
+  const tremDaVendaLogo = (
     <Typography
       variant="h6"
       component="h1"
@@ -14,19 +21,52 @@ function MenuDesktop() {
         textAlign: 'left',
       }}
     >
-      Femmecubator
+      Trem da venda
     </Typography>
   );
   const getMenuButtons = () => (
-    <Button key="Login" color="inherit" href="/login" startIcon={<AccountCircleOutlined />}>
-      Login
-    </Button>
+    <div>
+      <Link href="/login">
+        <Button
+          key="Login"
+          sx={{
+            color: '#FFFEFE',
+          }}
+          startIcon={<AccountCircleOutlined />}
+        >
+          Login
+        </Button>
+      </Link>
+      <AlteredIconButton options={{ href: '/carrinho' }} posicao="end">
+        <ShoppingCartOutlinedIcon />
+      </AlteredIconButton>
+    </div>
   );
   return (
     <Toolbar>
-      <DrawerCategorias />
-      {femmecubatorLogo}
-      <div>{getMenuButtons()}</div>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={1} align="center" alignItems="center">
+          <Grid item xs={8}>
+            <DrawerCategorias />
+            <Link href="/">
+              <Button
+                sx={{
+                  color: '#FFFEFE',
+                }}
+                key="trem"
+                startIcon={<TrainIcon />}
+                size="large"
+              >
+                {tremDaVendaLogo}
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item xs={4}>
+            <ItemGrid>{getMenuButtons()}</ItemGrid>
+          </Grid>
+        </Grid>
+      </Box>
+
     </Toolbar>
   );
 }

@@ -5,10 +5,12 @@ import AppRouter from '../../routes/AppRouter';
 
 function App() {
   return (
-    <Router>
+    <div>
       <Header />
-      <AppRouter />
-    </Router>
+      <Router>
+        <AppRouter />
+      </Router>
+    </div>
   );
 }
 export default App;
