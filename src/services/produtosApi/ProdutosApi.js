@@ -6,3 +6,6 @@ export const ProdutosApi = axios.create({
 export async function GetCategoriasProdutos() {
   return ProdutosApi.get(process.env.REACT_APP_CATEGORIAS_APP_API);
 }
+export async function GetProdutos() {
+  return ProdutosApi.get(process.env.REACT_APP_PRODUTOS_APP_API);
+}

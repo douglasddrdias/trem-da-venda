@@ -7,7 +7,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Link from '@mui/material/Link';
 import DrawerCategorias from '../drawerCategorias/DrawerCategorias';
 import ItemGrid from '../../itemGridSemBorda/ItemGridSemBorda';
-import AlteredIconButton from '../../alteredIconButton/AlteredIconButton';
+import SeachInput from '../../searchInput/SearchInput';
 
 function MenuDesktop() {
   const tremDaVendaLogo = (
@@ -37,16 +37,23 @@ function MenuDesktop() {
           Login
         </Button>
       </Link>
-      <AlteredIconButton options={{ href: '/carrinho' }} posicao="end">
-        <ShoppingCartOutlinedIcon />
-      </AlteredIconButton>
+      <Link href="/carrinho">
+        <Button
+          key="Login"
+          sx={{
+            color: '#FFFEFE',
+          }}
+          startIcon={<ShoppingCartOutlinedIcon />}
+        />
+
+      </Link>
     </div>
   );
   return (
     <Toolbar>
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1} align="center" alignItems="center">
-          <Grid item xs={8}>
+          <Grid item sm={8}>
             <DrawerCategorias />
             <Link href="/">
               <Button
@@ -60,8 +67,9 @@ function MenuDesktop() {
                 {tremDaVendaLogo}
               </Button>
             </Link>
+            <SeachInput />
           </Grid>
-          <Grid item xs={4}>
+          <Grid item sm={4}>
             <ItemGrid>{getMenuButtons()}</ItemGrid>
           </Grid>
         </Grid>

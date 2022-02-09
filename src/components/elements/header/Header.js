@@ -6,14 +6,13 @@ import MenuMobile from './menuMobile/MenuMobile';
 function Header() {
   const [mobileView, setMobileView] = useState(false);
   useEffect(() => {
-    const setResponsiveness = () => (window.innerWidth < 900
+    const setResponsiveness = () => (window.innerWidth < 1100
       ? setMobileView(true)
       : setMobileView(false));
 
     setResponsiveness();
 
     window.addEventListener('resize', () => setResponsiveness());
-
     return () => {
       window.removeEventListener('resize', () => setResponsiveness());
     };
