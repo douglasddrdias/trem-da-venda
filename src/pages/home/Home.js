@@ -1,9 +1,11 @@
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
-import { useState, useEffect, useRef } from 'react';
-import { GetProdutos } from '../../services/produtosApi/ProdutosApi';
+// import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CardProduto from '../../components/elements/cardProduto/CardProduto';
+import { fetchProdutos } from '../../utils/ProdutoUtils';
 
 const produtosLogo = (
   <Typography
@@ -20,29 +22,31 @@ const produtosLogo = (
 );
 function Home() {
   const isMounted = useRef(true);
-  const [cardsProdutos, setCardsProdutos] = useState([]);
+  const produtos = useSelector((state) => state.produtoReducer.produtos);
+  const loading = useSelector((state) => state.produtoReducer.loading);
+  const dispatch = useDispatch();
 
   const getCardProdutos = async () => {
-    const { data } = await GetProdutos();
-    setCardsProdutos(data);
+    if (isMounted.current) {
+      fetchProdutos(dispatch);
+    }
   };
   useEffect(() => {
     getCardProdutos();
     return () => {
       isMounted.current = false;
     };
-  }, []);
+  }, [loading]);
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="lg">
       {produtosLogo}
-      <Grid container align="center" alignItems="center">
+      <Grid container>
         <Grid
           spacing={4}
           container
-          direction="row"
         >
-          {cardsProdutos.length > 0 && cardsProdutos.map((item) => (
-            <CardProduto produto={item} key={`cardProd${item.id}`} />
+          {produtos && produtos.length > 0 && produtos.map((item) => (
+            <CardProduto produto={item} loading={loading} key={`cardProd${item.id}`} />
           ))}
         </Grid>
       </Grid>
