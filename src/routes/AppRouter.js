@@ -7,6 +7,10 @@ function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route
+        path="/:categoria"
+        element={<Home />}
+      />
       <Route path="/login" element={<Login />} />
       <Route path="/carrinho" element={<Carrinho />} />
     </Routes>

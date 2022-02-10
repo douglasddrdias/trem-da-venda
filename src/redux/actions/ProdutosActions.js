@@ -18,6 +18,7 @@ export function fetchProdutosSuccess(produtos) {
 export function fetchProdutosError(error) {
   return {
     type: FETCH_PRODUTOS_ERROR,
+    loading: false,
     error,
   };
 }

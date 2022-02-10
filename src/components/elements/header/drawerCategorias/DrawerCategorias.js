@@ -113,7 +113,7 @@ function DrawerCategorias() {
         <div sx={{ padding: '20px 30px' }}>{
             categorias.length > 0 && categorias.map((item) => (
               <Link
-                href="login"
+                href={`/${item}`}
                 color="inherit"
                 sx={{ textDecoration: 'none' }}
                 key={`drawer${item}`}
