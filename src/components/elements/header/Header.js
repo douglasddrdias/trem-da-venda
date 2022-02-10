@@ -28,9 +28,9 @@ function Header() {
   return (
     <AppBar
       position="static"
+      className="background-green"
       sx={{
         marginBottom: (theme) => theme.spacing(2),
-        backgroundColor: 'rgb(64, 205, 40)',
       }}
     >{mobileView ? displayMobile() : displayDesktop()}
     </AppBar>

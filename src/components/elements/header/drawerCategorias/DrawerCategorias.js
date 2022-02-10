@@ -35,7 +35,6 @@ function DrawerCategorias() {
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: 'rgb(64, 205, 40)',
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
@@ -93,7 +92,7 @@ function DrawerCategorias() {
           },
         }}
       >
-        <DrawerHeader>
+        <DrawerHeader className="background-green">
           {textCategorias}
           <DivEnd>
             <IconButton
