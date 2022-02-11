@@ -5,7 +5,7 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import WhatsappOutlinedIcon from '@mui/icons-material/WhatsappOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import AppsOutageOutlinedIcon from '@mui/icons-material/AppsOutageOutlined';
+import PersonPinOutlinedIcon from '@mui/icons-material/PersonPinOutlined';
 import Titulo from '../titulo/Titulo';
 
 function Footer() {
@@ -56,7 +56,7 @@ function Footer() {
             <Titulo>Criado por</Titulo>
             <ListItem>
               <ListItemIcon>
-                <AppsOutageOutlinedIcon />
+                <PersonPinOutlinedIcon />
               </ListItemIcon>
               <ListItemText
                 primary="Douglas Dias da Rocha"

@@ -39,7 +39,7 @@ function MenuDesktop() {
       </Link>
       <Link href="/carrinho">
         <Button
-          key="Login"
+          key="Carrinho"
           sx={{
             color: '#FFFEFE',
           }}

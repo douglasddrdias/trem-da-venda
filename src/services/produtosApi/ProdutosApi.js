@@ -12,3 +12,6 @@ export async function GetProdutos() {
 export async function GetProdutosPorCategoria(categoria) {
   return ProdutosApi.get(process.env.REACT_APP_CATEGORIAS_PRODUTOS_APP_API + categoria);
 }
+export async function GetProdutoPorId(id) {
+  return ProdutosApi.get(`${process.env.REACT_APP_PRODUTOS_APP_API}/${id}`);
+}

@@ -13,10 +13,16 @@ body {
 }
 a{
     text-decoration: none;
+    color: rgb(51, 51, 51);
 }
-a:visited {
+a:link:visited:hover:active {
     text-decoration: none;
-  }
+    color: rgb(51, 51, 51);
+}
+a:hover {
+    text-decoration: none;
+    color: rgb(51, 51, 51);
+}
 .background-green{
     background: rgb(64, 205, 40);  
 }
