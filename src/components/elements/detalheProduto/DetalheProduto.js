@@ -12,10 +12,9 @@ import CarrinhoAction from '../../../redux/actions/CarrinhoAction';
 
 function DetalheProduto({ loading, produto }) {
   const cart = useSelector((state) => state.carrinhoReducer.value);
-  console.log('produto', produto);
   const dispatch = useDispatch();
   const addProdutoCarrinho = () => {
-    console.log(cart);
+    console.log('cart', cart);
     dispatch(CarrinhoAction.Add(cart, produto));
   };
   const detalharDadosProduto = () => (
