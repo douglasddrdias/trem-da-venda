@@ -1,3 +1,4 @@
+import produce from 'immer';
 import { ADDCATEGORIAS } from '../actions/CategoriasActions';
 
 const initialState = {
@@ -5,13 +6,12 @@ const initialState = {
 };
 
 export default function CategoriasReducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case ADDCATEGORIAS:
-      return {
-        categorias: [...action.categorias],
-      };
-    default: {
-      return state;
+  return produce(state, (draft) => {
+    switch (action.type) {
+      case ADDCATEGORIAS:
+        draft.categorias = action.categorias;
+        break;
+      default:
     }
-  }
+  });
 }

@@ -9,7 +9,6 @@ export default function CarrinhoReducer(state = INITIAL_STATE, action = {}) {
   return produce(state, (draft) => {
     switch (action.type) {
       case 'ADD_TO_CART':
-        console.log(action);
         if (draft.value === 0) {
           const item = {
             id: action.produto.id,

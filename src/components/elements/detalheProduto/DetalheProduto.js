@@ -14,7 +14,6 @@ function DetalheProduto({ loading, produto }) {
   const cart = useSelector((state) => state.carrinhoReducer.value);
   const dispatch = useDispatch();
   const addProdutoCarrinho = () => {
-    console.log('cart', cart);
     dispatch(CarrinhoAction.Add(cart, produto));
   };
   const detalharDadosProduto = () => (
