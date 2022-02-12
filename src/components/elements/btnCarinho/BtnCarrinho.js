@@ -8,7 +8,6 @@ function BtnCarrinho() {
   const navigate = useNavigate();
   const verCarrinho = () => {
     navigate('/carrinho');
-    console.log(quantidade);
   };
   return (
     <Button

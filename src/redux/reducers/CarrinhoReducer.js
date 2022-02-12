@@ -22,7 +22,7 @@ export default function CarrinhoReducer(state = INITIAL_STATE, action = {}) {
           let check = false;
           draft.Cart.map((item, key) => {
             if (item.id === action.produto.id) {
-              draft.Cart[key].quantity += draft.Cart[key].quantity + 1;
+              draft.Cart[key].quantity += 1;
               check = true;
             }
             return item;
@@ -38,26 +38,26 @@ export default function CarrinhoReducer(state = INITIAL_STATE, action = {}) {
             draft.Cart.push(item);
           }
         }
-        draft.value += draft.value + 1;
+        draft.value += 1;
         break;
       case 'ADD_ITEM':
-        draft.Cart.forEach((item, key) => {
+        draft.Cart.forEach((item) => {
           if (item.id === action.produto.id) {
-            draft.Cart[key].produto.quantity += draft.Cart[key].produto.quantity + 1;
+            item.quantity += 1;
           }
         });
-        draft.value += draft.value + 1;
+        draft.value += 1;
         break;
       case 'REMOVE_ITEM':
-        draft.Cart.forEach((item, key) => {
+        draft.Cart.forEach((item) => {
           if (item.id === action.produto.id) {
-            draft.Cart[key].produto.quantity += draft.Cart[key].produto.quantity - 1;
+            item.quantity -= 1;
           }
         });
-        draft.value += draft.value - 1;
+        draft.value -= 1;
         break;
       case 'DELETE_ITEM':
-        draft.Cart.filter((item) => item.id !== action.produto.id);
+        draft.Cart = draft.Cart.filter((item) => item.id !== action.produto.id);
         break;
       default:
     }

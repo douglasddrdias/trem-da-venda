@@ -26,4 +26,59 @@ a:hover {
 .background-green{
     background: rgb(64, 205, 40);  
 }
+
+.mouse-hover:hover{
+    cursor: pointer;
+}
+
+.counter-wrapper{
+    display: flex;
+    flex-direction: row;
+    border: 3px solid rgb(192,192,192);
+    border-radius: 4px;
+    align-items: center;
+    justify-content: space-between;
+    height: 30px;
+    width: 80%;
+}
+
+.counter-button-plus-active{
+    border:none;
+    background-color: transparent;
+    height: 100%;
+    font-size: larger;
+    color: red;
+    cursor: pointer;
+}
+
+.counter-button-minus-active{
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    font-size: larger;
+    color: red;
+    cursor: pointer;    
+}
+
+.counter-button-plus-desactive{
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    font-size: larger;
+    cursor: pointer;      
+    color: rgb(105,105,105);
+}
+
+.counter-button-minus-desactive{
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    font-size: larger;
+    cursor: pointer;      
+    color: rgb(105,105,105);
+}
+
+.counter-p{
+    margin-top: 15px;
+}
 `;

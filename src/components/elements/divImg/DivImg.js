@@ -1,7 +1,7 @@
 import { styled as sysStyled } from '@mui/system';
 
-const DivImg = sysStyled('div')(() => ({
-  height: '200px',
+const DivImg = sysStyled('div')(({ alturadiv = '200px' }) => ({
+  height: alturadiv,
   display: 'flex',
   flexDirection: 'column',
 }));
