@@ -4,12 +4,13 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TrainIcon from '@mui/icons-material/Train';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import Link from '@mui/material/Link';
+import { useNavigate } from 'react-router-dom';
 import DrawerCategorias from '../drawerCategorias/DrawerCategorias';
 import ItemGrid from '../../itemGridSemBorda/ItemGridSemBorda';
 import SeachInput from '../../searchInput/SearchInput';
 
 function MenuDesktop() {
+  const navigate = useNavigate();
   const tremDaVendaLogo = (
     <Typography
       variant="h6"
@@ -26,27 +27,24 @@ function MenuDesktop() {
   );
   const getMenuButtons = () => (
     <div>
-      <Link href="/login">
-        <Button
-          key="Login"
-          sx={{
-            color: '#FFFEFE',
-          }}
-          startIcon={<AccountCircleOutlined />}
-        >
-          Login
-        </Button>
-      </Link>
-      <Link href="/carrinho">
-        <Button
-          key="Carrinho"
-          sx={{
-            color: '#FFFEFE',
-          }}
-          startIcon={<ShoppingCartOutlinedIcon />}
-        />
-
-      </Link>
+      <Button
+        key="Login"
+        onClick={() => { navigate('/login'); }}
+        sx={{
+          color: '#FFFEFE',
+        }}
+        startIcon={<AccountCircleOutlined />}
+      >
+        Login
+      </Button>
+      <Button
+        key="Carrinho"
+        onClick={() => { navigate('/carrinho'); }}
+        sx={{
+          color: '#FFFEFE',
+        }}
+        startIcon={<ShoppingCartOutlinedIcon />}
+      />
     </div>
   );
   return (
@@ -55,18 +53,17 @@ function MenuDesktop() {
         <Grid container spacing={1} align="center" alignItems="center">
           <Grid item sm={8}>
             <DrawerCategorias />
-            <Link href="/">
-              <Button
-                sx={{
-                  color: '#FFFEFE',
-                }}
-                key="trem"
-                startIcon={<TrainIcon />}
-                size="large"
-              >
-                {tremDaVendaLogo}
-              </Button>
-            </Link>
+            <Button
+              sx={{
+                color: '#FFFEFE',
+              }}
+              key="trem"
+              startIcon={<TrainIcon />}
+              size="large"
+              onClick={() => { navigate('/'); }}
+            >
+              {tremDaVendaLogo}
+            </Button>
             <SeachInput />
           </Grid>
           <Grid item sm={4}>

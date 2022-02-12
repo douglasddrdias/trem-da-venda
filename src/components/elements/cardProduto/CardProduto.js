@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fomatarValorEmReal } from '../../../utils/Utils';
 import CardMediaBase from '../cardMediaBase/CardMediaBase';
 import DivImg from '../divImg/DivImg';
@@ -40,12 +40,16 @@ const CardHeaderBase = styled(CardHeader)(() => ({
 }));
 
 export default function CardProduto({ produto, loading }) {
+  const navigate = useNavigate();
+  const clicarEmProduto = () => {
+    navigate(`/produto/${produto.id}`);
+  };
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} align="center">
       {loading ? (<Skeleton variant="rect" width={250} height={320} animation="wave" />) : (
         <CardBase>
           <Link to={`/produto/${produto.id}`}>
-            <CardActionArea sx={{ width: '100%', height: '100%' }}>
+            <CardActionArea sx={{ width: '100%', height: '100%' }} onClick={() => { clicarEmProduto(); }}>
               <CardHeaderBase
                 avatar={
                   <Rating name="read-only" value={produto.rating.rate} readOnly />

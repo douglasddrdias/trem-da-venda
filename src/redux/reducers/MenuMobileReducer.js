@@ -1,4 +1,5 @@
-import { DRAWERCLOSE, DRAWEROPEN } from '../actions/MenuMobileActions';
+// import getLocalStorage from '../../helper/getLocalEstorage';
+import { ALTERAR_STADO_DRAWER } from '../actions/MenuMobileActions';
 
 const initialState = {
   aberto: false,
@@ -6,13 +7,11 @@ const initialState = {
 
 export default function MenuMobileReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case DRAWEROPEN:
+    case ALTERAR_STADO_DRAWER:
+      // console.log('menuReducer', action);
+      // console.log('localStorage', getLocalStorage('persist:authType'));
       return {
         aberto: true,
-      };
-    case DRAWERCLOSE:
-      return {
-        aberto: false,
       };
     default: {
       return state;

@@ -1,30 +1,31 @@
 import {
   Divider,
   Drawer,
-  IconButton, Link, MenuItem, Typography,
+  IconButton, MenuItem, Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 import DivEnd from '../../divEnd/DivEnd';
 import { GetCategoriasProdutos } from '../../../../services/produtosApi/ProdutosApi';
 import { fetchCategorias } from '../../../../redux/actions/CategoriasActions';
-import { DRAWERCLOSE, DRAWEROPEN } from '../../../../redux/actions/MenuMobileActions';
 
 function DrawerCategorias() {
-  const aberto = useSelector((state) => state.menuMobile.aberto);
+  const [aberto, setAberto] = useState(false);
   const categorias = useSelector((state) => state.categorias.categorias);
   const dispatch = useDispatch();
   const isMounted = useRef(true);
 
   async function getCategorias() {
-    const { data } = await GetCategoriasProdutos();
     if (isMounted.current && categorias.length === 0) {
+      const { data } = await GetCategoriasProdutos();
       dispatch(fetchCategorias(data));
     }
   }
+  const navigate = useNavigate();
   useEffect(() => {
     getCategorias();
     return () => {
@@ -59,10 +60,15 @@ function DrawerCategorias() {
   const drawerWidth = 240;
 
   const handleDrawerClose = () => {
-    dispatch({ type: DRAWERCLOSE });
+    setAberto(false);
   };
   const handleDrawerOpen = () => {
-    dispatch({ type: DRAWEROPEN });
+    setAberto(true);
+  };
+
+  const clicarEmCategoria = (categoria) => {
+    handleDrawerClose();
+    navigate(`/${categoria}`);
   };
   return (
     <>
@@ -111,14 +117,7 @@ function DrawerCategorias() {
         <Divider />
         <div sx={{ padding: '20px 30px' }}>{
             categorias.length > 0 && categorias.map((item) => (
-              <Link
-                href={`/${item}`}
-                color="inherit"
-                sx={{ textDecoration: 'none' }}
-                key={`drawer${item}`}
-              >
-                <MenuItem>{item}</MenuItem>
-              </Link>
+              <MenuItem onClick={() => { clicarEmCategoria(item); }} key={`menuCat${item}`}>{item}</MenuItem>
             ))
         }
         </div>

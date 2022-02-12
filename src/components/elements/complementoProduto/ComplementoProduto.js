@@ -1,16 +1,23 @@
-import { Skeleton, Typography } from '@mui/material';
+import { Grid, Skeleton, Typography } from '@mui/material';
 import TituloSecundario from '../tituloSecundario/TituloSecundario';
 
 function ComplementoProduto({ produto, loading }) {
   return (
-    <div style={{ marginBottom: '2rem' }}>
-      {loading ? (<><Skeleton animation="wave" variant="text" width="80%" height={80} /><Skeleton animation="wave" variant="rectangular" width="80%" height={120} /></>) : (
-        <>
-          <TituloSecundario component="h2">
-            {produto.title}
-          </TituloSecundario>
-          <Typography>{produto.description}</Typography>
-        </>
+    <div style={{ margin: '2rem' }}>
+      {loading ? (
+        <Grid container justifyContent="space-evenly" alignItems="center">
+          <Skeleton animation="wave" variant="text" width="80%" height={80} />
+          <Skeleton animation="wave" variant="rectangular" width="80%" height={120} />
+        </Grid>
+      ) : (
+        <Grid container alignItems="center">
+          <Grid item xs={12} align="center">
+            <TituloSecundario component="h2">
+              {produto.title}
+            </TituloSecundario>
+            <Typography>{produto.description}</Typography>
+          </Grid>
+        </Grid>
       )}
     </div>
   );

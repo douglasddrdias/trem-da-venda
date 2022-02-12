@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 import CardProduto from '../../components/elements/cardProduto/CardProduto';
 import { fetchProdutos } from '../../helper/ProdutoHelper';
 import ContainerPricipal from '../../components/elements/containerPrincipal/ContainerPrincipal';
+import { mockListProdutos } from '../../utils/Utils';
 
 function Home() {
   const produtos = useSelector((state) => state.produtoReducer.produtos);
@@ -30,7 +31,7 @@ function Home() {
   );
   const getProdutos = useCallback(() => {
     fetchProdutos(dispatch, categoria);
-  }, [dispatch]);
+  }, [dispatch, categoria]);
   useEffect(() => {
     getProdutos();
   }, [getProdutos]);
@@ -42,7 +43,7 @@ function Home() {
           spacing={4}
           container
         >
-          {getCardsProdutos(produtos)}
+          {loading ? (getCardsProdutos(mockListProdutos())) : (getCardsProdutos(produtos))}
         </Grid>
       </Grid>
     </ContainerPricipal>
