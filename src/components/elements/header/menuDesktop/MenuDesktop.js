@@ -3,11 +3,11 @@ import { Button, Toolbar, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import TrainIcon from '@mui/icons-material/Train';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { useNavigate } from 'react-router-dom';
 import DrawerCategorias from '../drawerCategorias/DrawerCategorias';
 import ItemGrid from '../../itemGridSemBorda/ItemGridSemBorda';
 import SeachInput from '../../searchInput/SearchInput';
+import BtnCarrinho from '../../btnCarinho/BtnCarrinho';
 
 function MenuDesktop() {
   const navigate = useNavigate();
@@ -37,14 +37,7 @@ function MenuDesktop() {
       >
         Login
       </Button>
-      <Button
-        key="Carrinho"
-        onClick={() => { navigate('/carrinho'); }}
-        sx={{
-          color: '#FFFEFE',
-        }}
-        startIcon={<ShoppingCartOutlinedIcon />}
-      />
+      <BtnCarrinho />
     </div>
   );
   return (

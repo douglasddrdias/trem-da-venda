@@ -1,23 +1,38 @@
 import {
-  Box, Grid, Paper, Skeleton, Typography,
+  Box, Grid, Paper, Rating, Skeleton, Typography,
 } from '@mui/material';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import ComplementoProduto from '../complementoProduto/ComplementoProduto';
 import DivImg from '../divImg/DivImg';
 import CardMediaBase from '../cardMediaBase/CardMediaBase';
 import { fomatarValorEmReal } from '../../../utils/Utils';
 import Btn from '../button/Button';
 import CarrinhoAction from '../../../redux/actions/CarrinhoAction';
+import ModalMensagem from '../modalMensagem/ModalMensagem';
 
 function DetalheProduto({ loading, produto }) {
   const cart = useSelector((state) => state.carrinhoReducer.value);
   const dispatch = useDispatch();
+  const [mensagemCarrinho, setMensagemCarrinho] = useState('');
   const addProdutoCarrinho = () => {
+    const mensagemSucesso = 'Produto adicionado com sucesso!';
     dispatch(CarrinhoAction.Add(cart, produto));
+    if (mensagemCarrinho) {
+      setMensagemCarrinho('');
+      setTimeout(() => {
+        setMensagemCarrinho(mensagemSucesso);
+      }, 400);
+    } else {
+      setMensagemCarrinho(mensagemSucesso);
+    }
   };
   const detalharDadosProduto = () => (
     <Grid container>
+      <Grid item sm={12} xs={12} align="center">
+        <Rating name="read-only" value={produto.rating.rate} readOnly />
+      </Grid>
       <Grid item sm={12} xs={12}>
         <DivImg>
           <CardMediaBase image={produto.image} component="img" />
@@ -38,16 +53,20 @@ function DetalheProduto({ loading, produto }) {
           </Btn>
         </Grid>
       </Grid>
+      <ModalMensagem mensagem={mensagemCarrinho} tipo="success" exibirIcone />
     </Grid>
   );
   const detalharProdutoCarregando = () => (
 
     <Grid container alignItems="center">
+      <Grid item sm={12} xs={12} align="center" sx={{ marginBottom: '2%' }}>
+        <Skeleton variant="rectangular" height={30} width="80%" animation="wave" />
+      </Grid>
       <Grid item sm={12} xs={12} align="center">
         <Skeleton variant="rect" height={180} width="80%" animation="wave" />
       </Grid>
       <Grid container alignItems="center" sx={{ paddingTop: '24px;' }}>
-        <Grid item sm={6} xs={12} align="center">
+        <Grid item sm={6} xs={12} align="center" sx={{ marginBottom: '2%' }}>
           <Skeleton variant="rectangular" height={40} width="80%" animation="wave" />
         </Grid>
         <Grid item sm={6} xs={12} align="center">
