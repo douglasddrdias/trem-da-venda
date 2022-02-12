@@ -15,7 +15,7 @@ import { fetchCategorias } from '../../../../redux/actions/CategoriasActions';
 
 function DrawerCategorias() {
   const [aberto, setAberto] = useState(false);
-  const categorias = useSelector((state) => state.categorias.categorias);
+  const categorias = useSelector((state) => state.categoriaReducer.categorias);
   const dispatch = useDispatch();
   const isMounted = useRef(true);
 
