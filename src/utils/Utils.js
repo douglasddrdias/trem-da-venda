@@ -1,7 +1,11 @@
 import uuid from 'react-native-uuid';
 
 export function fomatarValorEmReal(valor) {
-  const formatado = valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  let paraFormatar = Number(0);
+  if (valor) {
+    paraFormatar = Number(valor);
+  }
+  const formatado = paraFormatar.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   return formatado;
 }
 export function mockListProdutos() {

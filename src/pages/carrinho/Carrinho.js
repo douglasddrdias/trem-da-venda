@@ -18,7 +18,21 @@ function Carrinho() {
       >
         Meu carrinho de compras
       </Typography>
-      {carrinho.length > 0 ? (<ListaCarrinho />) : (<>Carrinho vazio</>)}
+      {carrinho.length > 0 ? (<ListaCarrinho />) : (
+        <Typography
+          variant="h2"
+          component="h1"
+          sx={{
+            fontFamily: 'Roboto, Work Sans, sans-serif',
+            fontWeight: 600,
+            textAlign: 'center',
+          }}
+        >
+          O carrinho está vazio :/
+          <br />
+          Os produtos que desejar comprar aparecerão aqui.
+        </Typography>
+      )}
     </ContainerPricipal>
   );
 }

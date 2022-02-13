@@ -18,6 +18,7 @@ export default function CarrinhoReducer(state = INITIAL_STATE, action = {}) {
             quantity: 1,
           };
           draft.Cart.push(item);
+          draft.value = item.price;
         } else {
           let check = false;
           draft.Cart.map((item, key) => {
@@ -38,7 +39,7 @@ export default function CarrinhoReducer(state = INITIAL_STATE, action = {}) {
             draft.Cart.push(item);
           }
         }
-        draft.value += 1;
+        draft.value += action.produto.price;
         break;
       case 'ADD_ITEM':
         draft.Cart.forEach((item) => {
@@ -46,7 +47,7 @@ export default function CarrinhoReducer(state = INITIAL_STATE, action = {}) {
             item.quantity += 1;
           }
         });
-        draft.value += 1;
+        draft.value += action.produto.price;
         break;
       case 'REMOVE_ITEM':
         draft.Cart.forEach((item) => {
@@ -55,9 +56,11 @@ export default function CarrinhoReducer(state = INITIAL_STATE, action = {}) {
           }
         });
         draft.value -= 1;
+        draft.value -= action.produto.price;
         break;
       case 'DELETE_ITEM':
         draft.Cart = draft.Cart.filter((item) => item.id !== action.produto.id);
+        draft.value -= action.produto.price;
         break;
       default:
     }
