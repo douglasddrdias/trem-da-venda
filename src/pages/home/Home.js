@@ -2,7 +2,7 @@ import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import CardProduto from '../../components/elements/cardProduto/CardProduto';
 import { fetchProdutos } from '../../helper/ProdutoHelper';
 import ContainerPricipal from '../../components/elements/containerPrincipal/ContainerPrincipal';
@@ -12,8 +12,12 @@ function Home() {
   const produtos = useSelector((state) => state.produtoReducer.produtos);
   const loading = useSelector((state) => state.produtoReducer.loading);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const clicarEmProduto = (idProduto) => {
+    navigate(`/produto/${idProduto}`);
+  };
   const getCardsProdutos = (itens) => (itens.map((item) => (
-    <CardProduto produto={item} loading={loading} key={`cardProd${item.id}`} />)));
+    <CardProduto produto={item} loading={loading} key={`cardProd${item.id}`} onClicarEmProduto={() => { clicarEmProduto(item.id); }} />)));
 
   const { categoria } = useParams();
   const produtosLogo = (
