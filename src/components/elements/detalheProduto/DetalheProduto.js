@@ -2,49 +2,13 @@ import {
   Box, Grid, Paper, Rating, Skeleton, Typography,
 } from '@mui/material';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import ComplementoProduto from '../complementoProduto/ComplementoProduto';
 import DivImg from '../divImg/DivImg';
 import CardMediaBase from '../cardMediaBase/CardMediaBase';
 import { fomatarValorEmReal } from '../../../utils/Utils';
 import Btn from '../button/Button';
-import CarrinhoAction from '../../../redux/actions/CarrinhoAction';
-import ModalMensagem from '../modalMensagem/ModalMensagem';
 
-function DetalheProduto({ loading, produto }) {
-  const valorCarrinho = useSelector((state) => state.carrinhoReducer.value);
-  const produtosCarrinho = useSelector((state) => state.carrinhoReducer.Cart);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [mensagemCarrinho, setMensagemCarrinho] = useState('');
-  const [tipoMensagem, setTipoMensagem] = useState('success');
-  const mensagemSucesso = 'Produto adicionado com sucesso!';
-  const mesagemJaExistente = 'O produto selecionado já existia no carrinho então foi aumentada a quantidade do mesmo!';
-  const atualizaModalMensagem = (mensagem) => {
-    setMensagemCarrinho('');
-    setTimeout(() => {
-      setMensagemCarrinho(mensagem);
-    }, 400);
-  };
-  const addProdutoCarrinho = () => {
-    dispatch(CarrinhoAction.Add(valorCarrinho, produto));
-    const [produtoCarrinho] = produtosCarrinho.filter((item) => item.id === produto.id);
-    setMensagemCarrinho('');
-    const produtoJaExistente = produtoCarrinho && produtoCarrinho.quantity > 1;
-    if (produtoJaExistente) {
-      setTipoMensagem('info');
-      atualizaModalMensagem(mesagemJaExistente);
-    } else {
-      setTipoMensagem('success');
-      atualizaModalMensagem(mensagemSucesso);
-    }
-    setTimeout(() => {
-      navigate('/carrinho');
-    }, 2000);
-  };
-
+function DetalheProduto({ loading, produto, oncomprar = () => {} }) {
   const detalharDadosProduto = () => (
     <Grid container>
       <Grid item sm={12} xs={12} align="center">
@@ -64,13 +28,12 @@ function DetalheProduto({ loading, produto }) {
         <Grid item sm={6} xs={12} align="center">
           <Btn
             startIcon={<AddShoppingCartOutlinedIcon />}
-            onClick={() => { addProdutoCarrinho(); }}
+            onClick={oncomprar}
           >
             Comprar
           </Btn>
         </Grid>
       </Grid>
-      <ModalMensagem mensagem={mensagemCarrinho} tipo={tipoMensagem} exibirIcone />
     </Grid>
   );
   const detalharProdutoCarregando = () => (

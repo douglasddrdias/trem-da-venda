@@ -1,5 +1,4 @@
 import { Grid, Paper } from '@mui/material';
-// import { Grid } from '@mui/material';
 import { useSelector } from 'react-redux';
 import ItemProdutoCarrinho from '../itemProdutoCarrinho/ItemProdutoCarrinho';
 import ResumoPedido from '../resumoPedido/ResumoPedido';
