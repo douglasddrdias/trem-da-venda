@@ -4,7 +4,12 @@ import ContainerPricipal from '../../components/elements/containerPrincipal/Cont
 import ListaCarrinho from '../../components/elements/listaCarrinho/ListaCarrinho';
 
 function Carrinho() {
-  const carrinho = useSelector((state) => state.carrinhoReducer.Cart);
+  const produtosCarrinho = useSelector((state) => state.carrinhoReducer.Cart);
+  const carrinho = useSelector((state) => state.carrinhoReducer);
+  const qtdeProd = carrinho.Cart.length;
+  const finalizarPedido = () => {
+    console.log('Finalizar pedido');
+  };
   return (
     <ContainerPricipal>
       <Typography
@@ -18,7 +23,14 @@ function Carrinho() {
       >
         Meu carrinho de compras
       </Typography>
-      {carrinho.length > 0 ? (<ListaCarrinho />) : (
+      {produtosCarrinho.length > 0 ? (
+        <ListaCarrinho
+          onFinalizarPedido={() => { finalizarPedido(); }}
+          qtdeProd={qtdeProd}
+          valorCarrinho={carrinho.value}
+          produtosCarrinho={produtosCarrinho}
+        />
+      ) : (
         <Typography
           variant="h2"
           component="h1"
