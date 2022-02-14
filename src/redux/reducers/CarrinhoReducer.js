@@ -62,6 +62,11 @@ export default function CarrinhoReducer(state = INITIAL_STATE, action = {}) {
         draft.Cart = draft.Cart.filter((item) => item.id !== action.produto.id);
         draft.value -= action.produto.price;
         break;
+      case 'CHANGE_CART':
+        draft.Cart = [];
+        draft.value = 0;
+        console.log('Novo draft', draft);
+        break;
       default:
     }
   });

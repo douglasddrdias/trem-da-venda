@@ -1,8 +1,10 @@
 import { Grid, Paper, Typography } from '@mui/material';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import ContainerPricipal from '../../components/elements/containerPrincipal/ContainerPrincipal';
 import ItemProdutoCarrinho from '../../components/elements/itemProdutoCarrinho/ItemProdutoCarrinho';
+import ModalMensagem from '../../components/elements/modalMensagem/ModalMensagem';
 import ResumoPedido from '../../components/elements/resumoPedido/ResumoPedido';
 import TituloSecundario from '../../components/elements/tituloSecundario/TituloSecundario';
 import CarrinhoAction from '../../redux/actions/CarrinhoAction';
@@ -13,8 +15,16 @@ function Carrinho() {
   const qtdeProd = carrinho.Cart.length;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [mensagemCarrinho, setMensagemCarrinho] = useState('');
+  // const [tipoMensagem, setTipoMensagem] = useState('success');
+  const mensagemSucesso = 'Compra finalizada com sucesso!';
+  const atualizaModalMensagem = (mensagem) => {
+    setMensagemCarrinho('');
+    setTimeout(() => {
+      setMensagemCarrinho(mensagem);
+    }, 400);
+  };
   function down(produto) {
-    console.log('down');
     if (produto.quantity <= 1) {
       dispatch(CarrinhoAction.DeleteItem(produtosCarrinho, produto));
     }
@@ -23,11 +33,11 @@ function Carrinho() {
     }
   }
   function up(produto) {
-    console.log('up');
     dispatch(CarrinhoAction.AddItem(produtosCarrinho, produto));
   }
   const finalizarPedido = () => {
-    console.log('Finalizar pedido');
+    dispatch(CarrinhoAction.ChangeCart());
+    atualizaModalMensagem(mensagemSucesso);
   };
 
   const clicarEmProduto = (produto) => {
@@ -94,6 +104,7 @@ function Carrinho() {
           Os produtos que desejar comprar aparecerão aqui.
         </Typography>
       )}
+      <ModalMensagem mensagem={mensagemCarrinho} tipo="success" />
     </ContainerPricipal>
   );
 }
