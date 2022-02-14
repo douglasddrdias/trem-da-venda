@@ -43,7 +43,6 @@ export default function CardProduto({ produto, loading, onClicarEmProduto = () =
     <Grid item xs={12} sm={6} md={4} lg={3} align="center">
       {loading ? (<Skeleton variant="rect" width={250} height={320} animation="wave" />) : (
         <CardBase>
-          {/* <Link to={`/produto/${produto.id}`}> */}
           <CardActionArea sx={{ width: '100%', height: '100%' }} onClick={onClicarEmProduto}>
             <CardHeaderBase
               avatar={
@@ -65,7 +64,6 @@ export default function CardProduto({ produto, loading, onClicarEmProduto = () =
               </Typography>
             </CardContentBase>
           </CardActionArea>
-          {/* </Link> */}
         </CardBase>
       )}
     </Grid>

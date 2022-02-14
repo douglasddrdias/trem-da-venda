@@ -6,7 +6,7 @@ const DivEnd = styled('div')(({ theme, width = '100%' }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
+  align: 'flex-end',
   width: `${width}`,
 }));
 

@@ -1,7 +1,6 @@
 import { AppBar } from '@mui/material';
 import { useEffect, useState } from 'react';
-import MenuDesktop from './menuDesktop/MenuDesktop';
-import MenuMobile from './menuMobile/MenuMobile';
+import MenuDesktop from './menu/Menu';
 
 function Header() {
   const [mobileView, setMobileView] = useState(false);
@@ -18,13 +17,6 @@ function Header() {
     };
   }, []);
 
-  const displayDesktop = () => (
-    <MenuDesktop />
-  );
-  const displayMobile = () => (
-    <MenuMobile />
-  );
-
   return (
     <AppBar
       position="static"
@@ -32,7 +24,8 @@ function Header() {
       sx={{
         marginBottom: (theme) => theme.spacing(2),
       }}
-    >{mobileView ? displayMobile() : displayDesktop()}
+    >
+      <MenuDesktop mobile={mobileView} />
     </AppBar>
   );
 }

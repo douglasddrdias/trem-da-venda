@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import MenuDesktop from './MenuDesktop';
+import MenuDesktop from './Menu';
 
 test('renders a text, input and two buttons', () => {
   render(<MenuDesktop />);

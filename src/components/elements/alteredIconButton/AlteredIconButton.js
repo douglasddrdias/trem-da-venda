@@ -12,7 +12,6 @@ function AlteredIconButton({
       {...{
         edge: `${posicao}`,
         color: 'inherit',
-        'aria-label': 'menu',
         'aria-haspopup': 'true',
       }}
     >
