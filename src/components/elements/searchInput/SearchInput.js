@@ -1,8 +1,8 @@
 import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
-import { InputBase } from '@mui/material';
+import { IconButton, InputBase } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
-import AlteredIconButton from '../alteredIconButton/AlteredIconButton';
+// import AlteredIconButton from '../alteredIconButton/AlteredIconButton';
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
@@ -38,14 +38,14 @@ function SeachInput() {
       placeholder="Buscar…"
       endAdornment={(
         <InputAdornment position="start">
-          <AlteredIconButton>
+          <IconButton edge="start">
             <SearchIcon sx={{
               color: '#FFFEFE',
               position: 'absolute',
               marginLeft: '-8px',
             }}
             />
-          </AlteredIconButton>
+          </IconButton>
         </InputAdornment>
       )}
     />

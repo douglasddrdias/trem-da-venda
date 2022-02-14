@@ -1,12 +1,12 @@
 import {
-  IconButton,
+  Button,
 } from '@mui/material';
 
 function AlteredIconButton({
   children, options, posicao = 'start', onUpdate = () => {},
 }) {
   return (
-    <IconButton
+    <Button
       onClick={onUpdate}
       {... options}
       {...{
@@ -16,7 +16,7 @@ function AlteredIconButton({
       }}
     >
       {children}
-    </IconButton>
+    </Button>
   );
 }
 
