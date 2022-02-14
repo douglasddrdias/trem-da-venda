@@ -65,7 +65,6 @@ export default function CarrinhoReducer(state = INITIAL_STATE, action = {}) {
       case 'CHANGE_CART':
         draft.Cart = [];
         draft.value = 0;
-        console.log('Novo draft', draft);
         break;
       default:
     }
