@@ -1,8 +1,13 @@
 import { AppBar } from '@mui/material';
 import { useEffect, useState } from 'react';
-import MenuDesktop from './menu/Menu';
+import Menu from './menu/Menu';
 
-function Header() {
+function Header({
+  quantidadeProdutosCarrinho,
+  onClickCarrinho = () => {},
+  onClickTrem = () => {},
+  onClickLogin = () => {},
+}) {
   const [mobileView, setMobileView] = useState(false);
   useEffect(() => {
     const setResponsiveness = () => (window.innerWidth < 1100
@@ -25,7 +30,13 @@ function Header() {
         marginBottom: (theme) => theme.spacing(2),
       }}
     >
-      <MenuDesktop mobile={mobileView} />
+      <Menu
+        mobile={mobileView}
+        quantidadeProdutosCarrinho={quantidadeProdutosCarrinho}
+        onClickCarrinho={onClickCarrinho}
+        onClickTrem={onClickTrem}
+        onClickLogin={onClickLogin}
+      />
     </AppBar>
   );
 }

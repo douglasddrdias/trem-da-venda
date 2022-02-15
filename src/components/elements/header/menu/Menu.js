@@ -2,7 +2,6 @@ import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import { Toolbar, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import TrainIcon from '@mui/icons-material/Train';
-import { useNavigate } from 'react-router-dom';
 import DrawerCategorias from '../drawerCategorias/DrawerCategorias';
 import ItemGrid from '../../itemGridSemBorda/ItemGridSemBorda';
 import SeachInput from '../../searchInput/SearchInput';
@@ -10,8 +9,13 @@ import BtnCarrinho from '../../btnCarinho/BtnCarrinho';
 import AlteredIconButton from '../../alteredIconButton/AlteredIconButton';
 import DivEnd from '../../divEnd/DivEnd';
 
-function MenuDesktop({ mobile }) {
-  const navigate = useNavigate();
+function MenuDesktop({
+  mobile,
+  quantidadeProdutosCarrinho,
+  onClickCarrinho = () => {},
+  onClickTrem = () => {},
+  onClickLogin = () => {},
+}) {
   const tremDaVendaLogo = (
     <Typography
       variant="h6"
@@ -23,7 +27,7 @@ function MenuDesktop({ mobile }) {
   );
   const getMenuButtons = () => (
     <DivEnd>
-      <AlteredIconButton onUpdate={() => { navigate('/login'); }}>
+      <AlteredIconButton onUpdate={onClickLogin}>
         <AccountCircleOutlined />
         {!mobile && (
         <Typography
@@ -35,7 +39,10 @@ function MenuDesktop({ mobile }) {
         </Typography>
         )}
       </AlteredIconButton>
-      <BtnCarrinho />
+      <BtnCarrinho
+        quantidadeProdutosCarrinho={quantidadeProdutosCarrinho}
+        onClickCarrinho={onClickCarrinho}
+      />
     </DivEnd>
   );
   return (
@@ -49,7 +56,7 @@ function MenuDesktop({ mobile }) {
           <DrawerCategorias />
         </Grid>
         <Grid item lg={3} sm={2} xs={1}>
-          <AlteredIconButton size="large" onUpdate={() => { navigate('/'); }}>
+          <AlteredIconButton size="large" onUpdate={onClickTrem}>
             <TrainIcon />
             {!mobile && (tremDaVendaLogo)}
           </AlteredIconButton>

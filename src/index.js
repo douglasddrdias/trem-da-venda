@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import { PersistGate } from 'redux-persist/integration/react';
-// import getLocalStorage from './helper/getLocalEstorage';
 import App from './pages/app/App';
-// import localStorage from './redux/reducers/localStorage.middleware';
-// import store from './redux/reducers/RootReducer';
-// import { store, persistor } from './redux/reducers/RootReducer';
 import { store, persistor } from './redux/reducers/RootReducer';
 import { GlobalStyle } from './styles/GlobalStyle';
 
@@ -16,7 +13,9 @@ ReactDOM.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <GlobalStyle />
-        <App />
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </React.StrictMode>,
