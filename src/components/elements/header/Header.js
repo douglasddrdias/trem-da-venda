@@ -7,6 +7,7 @@ function Header({
   onClickCarrinho = () => {},
   onClickTrem = () => {},
   onClickLogin = () => {},
+  menuDinamico,
 }) {
   const [mobileView, setMobileView] = useState(false);
   useEffect(() => {
@@ -36,6 +37,7 @@ function Header({
         onClickCarrinho={onClickCarrinho}
         onClickTrem={onClickTrem}
         onClickLogin={onClickLogin}
+        menuDinamico={menuDinamico}
       />
     </AppBar>
   );

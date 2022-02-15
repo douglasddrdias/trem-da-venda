@@ -2,7 +2,6 @@ import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import { Toolbar, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import TrainIcon from '@mui/icons-material/Train';
-import DrawerCategorias from '../drawerCategorias/DrawerCategorias';
 import ItemGrid from '../../itemGridSemBorda/ItemGridSemBorda';
 import SeachInput from '../../searchInput/SearchInput';
 import BtnCarrinho from '../../btnCarinho/BtnCarrinho';
@@ -15,6 +14,7 @@ function MenuDesktop({
   onClickCarrinho = () => {},
   onClickTrem = () => {},
   onClickLogin = () => {},
+  menuDinamico,
 }) {
   const tremDaVendaLogo = (
     <Typography
@@ -53,7 +53,7 @@ function MenuDesktop({
     >
       <Grid container spacing={1} justifyContent="space-evenly" alignItems="center">
         <Grid item sm={1}>
-          <DrawerCategorias />
+          {menuDinamico}
         </Grid>
         <Grid item lg={3} sm={2} xs={1}>
           <AlteredIconButton size="large" onUpdate={onClickTrem}>

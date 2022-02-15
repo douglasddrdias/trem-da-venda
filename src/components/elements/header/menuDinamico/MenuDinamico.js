@@ -1,38 +1,20 @@
 import {
   Divider,
   Drawer,
-  IconButton, MenuItem, Typography,
+  IconButton, Typography,
 } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router';
 import DivEnd from '../../divEnd/DivEnd';
-import { GetCategoriasProdutos } from '../../../../services/produtosApi/ProdutosApi';
-import { fetchCategorias } from '../../../../redux/actions/CategoriasActions';
 
-function DrawerCategorias() {
-  const [aberto, setAberto] = useState(false);
-  const categorias = useSelector((state) => state.categoriaReducer.categorias);
-  const dispatch = useDispatch();
-  const isMounted = useRef(true);
-
-  async function getCategorias() {
-    if (isMounted.current && categorias.length === 0) {
-      const { data } = await GetCategoriasProdutos();
-      dispatch(fetchCategorias(data));
-    }
-  }
-  const navigate = useNavigate();
-  useEffect(() => {
-    getCategorias();
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-
+function MenuDinamico({
+  tituloMenu = 'Categorias',
+  itensMenu,
+  aberto = false,
+  onClickDrawerOpen = () => {},
+  onClickDrawerClose = () => {},
+}) {
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -53,23 +35,11 @@ function DrawerCategorias() {
         color: '#FFFEFE',
       }}
     >
-      Categorias
+      {tituloMenu}
     </Typography>
   );
 
   const drawerWidth = 240;
-
-  const handleDrawerClose = () => {
-    setAberto(false);
-  };
-  const handleDrawerOpen = () => {
-    setAberto(true);
-  };
-
-  const clicarEmCategoria = (categoria) => {
-    handleDrawerClose();
-    navigate(`/${categoria}`);
-  };
   return (
     <>
       <IconButton
@@ -78,7 +48,7 @@ function DrawerCategorias() {
           color: 'inherit',
           'aria-label': 'menu',
           'aria-haspopup': 'true',
-          onClick: handleDrawerOpen,
+          onClick: onClickDrawerOpen,
         }}
       >
         <MenuIcon />
@@ -87,7 +57,7 @@ function DrawerCategorias() {
         {...{
           anchor: 'left',
           open: aberto,
-          onClose: handleDrawerClose,
+          onClose: onClickDrawerClose,
         }}
         sx={{
           width: drawerWidth,
@@ -107,7 +77,7 @@ function DrawerCategorias() {
                 edge: 'end',
                 'aria-label': 'menu',
                 'aria-haspopup': 'true',
-                onClick: handleDrawerClose,
+                onClick: onClickDrawerClose,
               }}
             >
               <CloseOutlinedIcon />
@@ -115,15 +85,10 @@ function DrawerCategorias() {
           </DivEnd>
         </DrawerHeader>
         <Divider />
-        <div sx={{ padding: '20px 30px' }}>{
-            categorias.length > 0 && categorias.map((item) => (
-              <MenuItem onClick={() => { clicarEmCategoria(item); }} key={`menuCat${item}`}>{item}</MenuItem>
-            ))
-        }
-        </div>
+        {itensMenu}
       </Drawer>
     </>
   );
 }
 
-export default DrawerCategorias;
+export default MenuDinamico;
