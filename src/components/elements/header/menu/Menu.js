@@ -2,7 +2,6 @@ import AccountCircleOutlined from '@mui/icons-material/AccountCircleOutlined';
 import { Toolbar, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import TrainIcon from '@mui/icons-material/Train';
-import ItemGrid from '../../itemGridSemBorda/ItemGridSemBorda';
 import SeachInput from '../../searchInput/SearchInput';
 import BtnCarrinho from '../../btnCarinho/BtnCarrinho';
 import AlteredIconButton from '../../alteredIconButton/AlteredIconButton';
@@ -65,7 +64,7 @@ function MenuDesktop({
           <SeachInput />
         </Grid>
         <Grid item xs={3}>
-          <ItemGrid>{getMenuButtons()}</ItemGrid>
+          {getMenuButtons()}
         </Grid>
       </Grid>
     </Toolbar>
