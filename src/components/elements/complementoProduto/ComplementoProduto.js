@@ -6,8 +6,8 @@ function ComplementoProduto({ produto, loading }) {
     <div style={{ margin: '2rem' }}>
       {loading ? (
         <Grid container justifyContent="space-evenly" alignItems="center">
-          <Skeleton animation="wave" variant="text" width="80%" height={80} />
-          <Skeleton animation="wave" variant="rectangular" width="80%" height={120} />
+          <Skeleton animation="wave" variant="text" width="80%" height={80} aria-label="titleSkeleton" />
+          <Skeleton animation="wave" variant="rectangular" width="80%" height={120} aria-label="describeSkeleton" />
         </Grid>
       ) : (
         <Grid container alignItems="center">

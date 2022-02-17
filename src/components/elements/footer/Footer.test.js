@@ -1,0 +1,34 @@
+import { render, screen } from '@testing-library/react';
+import Footer from './Footer';
+
+test('render a complete information in the footer', () => {
+  render(<Footer />);
+  const textEnderecoEl = screen.getByText(/Endereço/i);
+  const iconEnderecoEl = screen.getByTestId('LocationOnOutlinedIcon');
+  const streetNumberEl = screen.getByText(/Rua Trem da venda, 255, bairro Vagão/i);
+  const cityStateEl = screen.getByText(/Sta Luzia, MG - CEP 33200-00/i);
+  const contatoEl = screen.getByText(/Contato/i);
+  const wppEl = screen.getByText(/99999-9999/i);
+  const telEl = screen.getByText(/3333-9999/i);
+  const emailEl = screen.getByText(/tremdavenda@gmail.com/i);
+  const wppIconEl = screen.getByTestId('WhatsappOutlinedIcon');
+  const telIconEl = screen.getByTestId('LocalPhoneOutlinedIcon');
+  const emailIconEl = screen.getByTestId('EmailOutlinedIcon');
+  const criatedByEl = screen.getByText(/Criado por/i);
+  const iconAuthorEl = screen.getByTestId('PersonPinOutlinedIcon');
+  const nameOfAuthorEl = screen.getByText(/Douglas Dias da Rocha/i);
+  expect(textEnderecoEl).toBeInTheDocument();
+  expect(iconEnderecoEl).toBeInTheDocument();
+  expect(streetNumberEl).toBeInTheDocument();
+  expect(cityStateEl).toBeInTheDocument();
+  expect(wppEl).toBeInTheDocument();
+  expect(telEl).toBeInTheDocument();
+  expect(emailEl).toBeInTheDocument();
+  expect(wppIconEl).toBeInTheDocument();
+  expect(telIconEl).toBeInTheDocument();
+  expect(emailIconEl).toBeInTheDocument();
+  expect(contatoEl).toBeInTheDocument();
+  expect(criatedByEl).toBeInTheDocument();
+  expect(iconAuthorEl).toBeInTheDocument();
+  expect(nameOfAuthorEl).toBeInTheDocument();
+});

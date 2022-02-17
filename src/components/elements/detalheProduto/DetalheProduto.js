@@ -40,17 +40,17 @@ function DetalheProduto({ loading, produto, oncomprar = () => {} }) {
 
     <Grid container alignItems="center">
       <Grid item sm={12} xs={12} align="center" sx={{ marginBottom: '2%' }}>
-        <Skeleton variant="rectangular" height={30} width="80%" animation="wave" />
+        <Skeleton variant="rectangular" height={30} width="80%" animation="wave" aria-label="starSkeleton" />
       </Grid>
       <Grid item sm={12} xs={12} align="center">
-        <Skeleton variant="rect" height={180} width="80%" animation="wave" />
+        <Skeleton variant="rect" height={180} width="80%" animation="wave" aria-label="imgSkeleton" />
       </Grid>
       <Grid container alignItems="center" sx={{ paddingTop: '24px;' }}>
         <Grid item sm={6} xs={12} align="center" sx={{ marginBottom: '2%' }}>
-          <Skeleton variant="rectangular" height={40} width="80%" animation="wave" />
+          <Skeleton variant="rectangular" height={40} width="80%" animation="wave" aria-label="priceSkeleton" />
         </Grid>
         <Grid item sm={6} xs={12} align="center">
-          <Skeleton variant="rectangular" height={40} width="80%" animation="wave" />
+          <Skeleton variant="rectangular" height={40} width="80%" animation="wave" aria-label="buttonSkeleton" />
         </Grid>
       </Grid>
     </Grid>

@@ -34,14 +34,14 @@ function Footer() {
                 <ListItemIcon>
                   <WhatsappOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText primary="(99) 99999 9999" />
+                <ListItemText primary="(99) 99999-9999" />
               </ListItem>
 
               <ListItem>
                 <ListItemIcon>
                   <LocalPhoneOutlinedIcon />
                 </ListItemIcon>
-                <ListItemText primary="(99) 99999 9999" />
+                <ListItemText primary="(99) 3333-9999" />
               </ListItem>
 
               <ListItem>

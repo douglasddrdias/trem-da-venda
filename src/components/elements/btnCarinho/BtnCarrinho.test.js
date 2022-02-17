@@ -12,7 +12,7 @@ test('renders received quantidadeProdutosCarrinho, svg and a button with a text 
   expect(btnEl).toBeInTheDocument();
 });
 
-test('calls a callback when button is pressed', () => {
+test('calls a callback when btnCarrinho is pressed', () => {
   const callback = jest.fn();
   render(<BtnCarrinho onClickCarrinho={callback} />);
   const btnEl = screen.getByRole('button');
